@@ -20,8 +20,8 @@ def get_store(store_keys: List):
         if result.status_code == 404: continue # Handling 404 pages
         content = result.text
         soup = BeautifulSoup(content, 'lxml',)
-        dataJson = soup.find('p').getText()
-        nestedData = json.loads(dataJson)
+        data_json = soup.find('p').getText()
+        nested_data = json.loads(data_json)
 # Turning nested data into a dot notation
         def nested(nested_data, prefix='Object'):
             new_json=[]
@@ -40,10 +40,10 @@ def get_store(store_keys: List):
                 return new_json
             dotJson(nested_data, prefix)
             return new_json
-        dotData = nested(nestedData, prefix='Store')
+        dot_data = nested(nested_data, prefix='Store')
 
 # Creating the dataframe from the scraped data
-        df = pd.DataFrame(dotData)
+        df = pd.DataFrame(dot_data)
         df = df.set_index(0)
         df = df.T
 # Filtering data to analyze
