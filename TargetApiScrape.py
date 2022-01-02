@@ -81,3 +81,4 @@ def get_store(store_keys: List):
 df = get_store(stores)
 print(df)
 df.to_excel('Target.xlsx')
+df.to_csv('Target.csv')
